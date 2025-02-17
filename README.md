@@ -1,2 +1,2 @@
-# flamingo-codetest-main
-Demo Board Game
+# geoguessr-flamingo-codetest
+Codetest project for Flamingo
