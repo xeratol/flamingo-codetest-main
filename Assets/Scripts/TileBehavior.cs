@@ -7,10 +7,12 @@ public class TileBehavior : MonoBehaviour
     public enum TileType
     {
         Empty,
-        QuestionsQuiz,
+        TextQuiz,
         FlagsQuiz,
     }
 
     [SerializeField]
     private TileType _tileType;
+
+    public TileType Type => _tileType;
 }

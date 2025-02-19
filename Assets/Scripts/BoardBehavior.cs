@@ -17,7 +17,7 @@ public class BoardBehavior : MonoBehaviour
             throw new InvalidOperationException($"No tiles found");
     }
 
-    public IEnumerable<Vector3> GetTileDestinations(int fromIndex, int steps)
+    public IEnumerable<TileBehavior> GetTiles(int fromIndex, int steps)
     {
         if (fromIndex < 0)
             throw new ArgumentOutOfRangeException($"{nameof(fromIndex)} may not be less than 0");
@@ -25,15 +25,15 @@ public class BoardBehavior : MonoBehaviour
         if (steps <= 0)
         {
             Debug.LogError($"Number of steps is less than or equal to 0");
-            return Array.Empty<Vector3>();
+            return Array.Empty<TileBehavior>();
         }
 
-        var destinations = new List<Vector3>();
+        var destinations = new List<TileBehavior>();
 
         for (int i = 1; i <= steps; ++i)
         {
             var nextTileIndex = (fromIndex + i) % _tiles.Count;
-            destinations.Add(_tiles[nextTileIndex].transform.position);
+            destinations.Add(_tiles[nextTileIndex]);
         }
 
         return destinations;

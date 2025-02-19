@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface INumberGenerator
 {
-    public event Action<int> OnGenerate;
+    public event Action<int> OnGenerateEvent;
 
     public void Generate();
 }

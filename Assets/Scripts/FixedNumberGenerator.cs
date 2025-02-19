@@ -8,10 +8,10 @@ public class FixedNumberGenerator : MonoBehaviour, INumberGenerator
     [Tooltip("The fixed number to generate")]
     public int FixedValue;
 
-    public event Action<int> OnGenerate;
+    public event Action<int> OnGenerateEvent;
 
     public void Generate()
     {
-        OnGenerate.Invoke(FixedValue);
+        OnGenerateEvent?.Invoke(FixedValue);
     }
 }

@@ -15,30 +15,57 @@ public class GameLogic : MonoBehaviour
     [SerializeField]
     private INumberGenerator _numberGenerator;
 
+    [SerializeField]
+    private ChildSelector _uiSelector;
+
+    [SerializeField]
+    private QuizManager _quizManager;
+
     private int _currentPlayer = 0;
     private bool _isAnyPlayerMoving = false;
 
     void Awake()
     {
-        if (_players is null || _players.Count() == 0)
+        if (_players == null || _players.Count() == 0)
             throw new ArgumentException($"Players are not set");
 
-        if (_board is null)
+        if (_board == null)
             throw new ArgumentException($"Board is not set");
 
         _numberGenerator = GetComponent<INumberGenerator>();
-        if (_numberGenerator is null)
+        if (_numberGenerator == null)
             throw new ArgumentException($"Number Generator is not set");
+
+        if (_uiSelector == null)
+            throw new ArgumentException($"UI Selector is not set");
+
+        if (_quizManager == null)
+            throw new ArgumentException($"Quiz Manager is not set");
 
         foreach (var player in _players)
             player.OnMoveCompleteEvent += OnMoveCompleteEventHandler;
 
-        _numberGenerator.OnGenerate += OnNumberGenerateEventHandler;
+        _numberGenerator.OnGenerateEvent += OnNumberGenerateEventHandler;
     }
 
-    private void OnMoveCompleteEventHandler()
+    public void MovePlayer()
+    {
+        _numberGenerator.Generate();
+    }
+
+    private void OnMoveCompleteEventHandler(TileBehavior finalTile)
     {
         _isAnyPlayerMoving = false;
+
+        switch (finalTile.Type)
+        {
+            case TileBehavior.TileType.TextQuiz:
+                _quizManager.StartQuiz(QuizType.Text);
+                break;
+            case TileBehavior.TileType.FlagsQuiz:
+                _quizManager.StartQuiz(QuizType.Image);
+                break;
+        }
     }
 
     private void OnNumberGenerateEventHandler(int numSteps)
@@ -51,7 +78,7 @@ public class GameLogic : MonoBehaviour
 
         var currentPlayer = _players[_currentPlayer];
         var currentTile = currentPlayer.CurrentTileIndex;
-        var destinations = _board.GetTileDestinations(currentTile, numSteps);
+        var destinations = _board.GetTiles(currentTile, numSteps);
         currentPlayer.MoveTo(destinations);
 
         _currentPlayer = (_currentPlayer + 1) % _players.Count();
