@@ -20,17 +20,10 @@ public class QuizCanvasBehavior : MonoBehaviour
     [SerializeField]
     private TMP_Text[] _choicesText;
 
+    [SerializeField]
+    private TimerBehavior _timer;
+
     public event Action<int> OnChoiceSelectedEvent;
-
-    public string QuestionText
-    {
-        set { _questionField.text = value; }
-    }
-
-    public Sprite QuestionImage
-    {
-        set { _imageHint.sprite = value; }
-    }
 
     private void Awake()
     {
@@ -39,12 +32,28 @@ public class QuizCanvasBehavior : MonoBehaviour
 
         if (_questionField == null)
             throw new ArgumentNullException($"Question Field is not set");
+
+        if (_timer == null)
+            throw new ArgumentNullException($"Timer is not set");
+
+        _timer.OnCountdownEndsEvent += OnCountdownEndsEventHandler;
+    }
+
+    private void OnCountdownEndsEventHandler()
+    {
+        SelectAnswer(-1);
     }
 
     public void SelectAnswer(int index)
     {
         Debug.Log($"Player selected {index}");
         OnChoiceSelectedEvent?.Invoke(index);
+    }
+
+    public void Setup(string question, float duration)
+    {
+        _questionField.text = question;
+        _timer.StartCountdown(duration);
     }
 
     public void SetupChoices(Sprite[] choices)

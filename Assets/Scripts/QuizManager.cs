@@ -30,17 +30,9 @@ public class QuizManager : MonoBehaviour
     [SerializeField]
     private string _failureText = "Better luck next time!";
 
-    [Serializable]
-    private struct FlagKeyPair
-    {
-        public string Code;
-        public Sprite Image;
-    }
-
     [SerializeField]
-    private FlagKeyPair[] _flagPairs;
+    private float _quizDuration = 10.0f;
 
-    private readonly Dictionary<string, Sprite> _flagsDict = new();
     private QuizData _currentQuizData;
 
     private void Awake()
@@ -56,16 +48,6 @@ public class QuizManager : MonoBehaviour
 
         if (_quizRepo == null)
             throw new ArgumentNullException($"Quiz Repository not set");
-
-        foreach (var flagPair in _flagPairs)
-        {
-            if (_flagsDict.ContainsKey(flagPair.Code))
-            {
-                Debug.LogError($"Flags Dictionary already contains ({flagPair.Code})");
-                continue;
-            }
-            _flagsDict[flagPair.Code] = flagPair.Image;
-        }
 
         _textQuizCanvas.OnChoiceSelectedEvent += OnChoiceSelectedEventHandler;
         _flagQuizCanvas.OnChoiceSelectedEvent += OnChoiceSelectedEventHandler;
@@ -88,8 +70,8 @@ public class QuizManager : MonoBehaviour
 
         var answer = _currentQuizData.Answers[_currentQuizData.CorrectAnswerIndex];
         quizCanvasResult.AnswerText = answer.Text;
-        if (!string.IsNullOrEmpty(answer.ImageID) && _flagsDict.ContainsKey(answer.ImageID))
-            quizCanvasResult.AnswerImage = _flagsDict[answer.ImageID];
+        if (!string.IsNullOrEmpty(answer.ImageID) && _quizRepo.FlagsDict.ContainsKey(answer.ImageID))
+            quizCanvasResult.AnswerImage = _quizRepo.FlagsDict[answer.ImageID];
         quizCanvasResult.Remark = (choice == _currentQuizData.CorrectAnswerIndex) ? _successText : _failureText;
         _uiSelector.Select(quizCanvasResult.gameObject.name);
     }
@@ -109,14 +91,14 @@ public class QuizManager : MonoBehaviour
         switch (quizData.QuestionType)
         {
             case QuizType.Text:
-                _textQuizCanvas.QuestionText = quizData.Question;
-                _textQuizCanvas.SetupChoices(GetTextChoices(quizData.Answers));
                 _uiSelector.Select(_textQuizCanvas.gameObject.name);
+                _textQuizCanvas.Setup(quizData.Question, _quizDuration);
+                _textQuizCanvas.SetupChoices(GetTextChoices(quizData.Answers));
                 break;
             case QuizType.Image:
-                _flagQuizCanvas.QuestionText = quizData.Question;
-                _flagQuizCanvas.SetupChoices(GetImageChoices(quizData.Answers));
                 _uiSelector.Select(_flagQuizCanvas.gameObject.name);
+                _flagQuizCanvas.Setup(quizData.Question, _quizDuration);
+                _flagQuizCanvas.SetupChoices(GetImageChoices(quizData.Answers));
                 break;
         }
     }
@@ -125,7 +107,7 @@ public class QuizManager : MonoBehaviour
     {
         // TODO randomize answers. Need to map correct answer index with randomized positions.
         var answersList = new List<QuizData.AnswerStruct>(answers);
-        var choices = answersList.Select(answer => _flagsDict[answer.ImageID]);
+        var choices = answersList.Select(answer => _quizRepo.FlagsDict[answer.ImageID]);
         return choices.ToArray();
     }
 

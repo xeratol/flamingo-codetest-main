@@ -9,6 +9,18 @@ public class QuizRepository : MonoBehaviour
     private readonly List<QuizData> _textQuizzes = new();
     private readonly List<QuizData> _flagQuizzes = new();
 
+    [Serializable]
+    private struct FlagKeyPair
+    {
+        public string Code;
+        public Sprite Image;
+    }
+
+    [SerializeField]
+    private FlagKeyPair[] _flagPairs;
+    private readonly Dictionary<string, Sprite> _flagsDict = new();
+    public IReadOnlyDictionary<string, Sprite> FlagsDict => _flagsDict;
+
     private void Awake()
     {
         // Ideally, we don't store quizzes in memory.
@@ -25,6 +37,16 @@ public class QuizRepository : MonoBehaviour
                     _flagQuizzes.Add(quizData);
                     break;
             }
+        }
+
+        foreach (var flagPair in _flagPairs)
+        {
+            if (_flagsDict.ContainsKey(flagPair.Code))
+            {
+                Debug.LogError($"Flags Dictionary already contains ({flagPair.Code})");
+                continue;
+            }
+            _flagsDict[flagPair.Code] = flagPair.Image;
         }
     }
 

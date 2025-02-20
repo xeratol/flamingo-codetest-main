@@ -3,13 +3,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
     public int CurrentTileIndex { get; private set; } = 0;
 
-    public bool IsMoving { get; private set; }
     public event Action<TileBehavior> OnMoveCompleteEvent;
 
     [SerializeField]
@@ -23,6 +23,9 @@ public class PlayerBehavior : MonoBehaviour
     private Transform _fireworksOnLand;
     private Transform _fireworksOnLandInstance;
 
+    [SerializeField]
+    private Animator _animator;
+
     public void MoveTo(IEnumerable<TileBehavior> destinations)
     {
         StartCoroutine(Move(destinations));
@@ -30,6 +33,7 @@ public class PlayerBehavior : MonoBehaviour
 
     private IEnumerator Move(IEnumerable<TileBehavior> destinations)
     {
+        _animator.SetBool("Moving", true);
         foreach (var destination in destinations)
         {
             transform.DOMove(destination.transform.position, MoveDuration);
@@ -47,6 +51,7 @@ public class PlayerBehavior : MonoBehaviour
         }
 
         OnMoveCompleteEvent?.Invoke(destinations.Last());
+        _animator.SetBool("Moving", false);
     }
 
     private void ShowParticlesOnPass()
