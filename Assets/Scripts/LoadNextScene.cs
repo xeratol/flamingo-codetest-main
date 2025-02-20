@@ -1,14 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadNextScene : MonoBehaviour
 {
-    public int IndexOfNextScene = 1;
+    [SerializeField]
+    private int _indexOfNextScene = 1;
 
-    void Start()
+    [SerializeField]
+    private float _delay = 1.0f;
+
+    IEnumerator Start()
     {
-        SceneManager.LoadScene(IndexOfNextScene);
+        yield return new WaitForSeconds(_delay);
+        SceneManager.LoadScene(_indexOfNextScene);
     }
 }

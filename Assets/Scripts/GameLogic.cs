@@ -59,10 +59,10 @@ public class GameLogic : MonoBehaviour
 
         switch (finalTile.Type)
         {
-            case TileBehavior.TileType.TextQuiz:
+            case TileType.TextQuiz:
                 _quizManager.StartQuiz(QuizType.Text);
                 break;
-            case TileBehavior.TileType.FlagsQuiz:
+            case TileType.FlagsQuiz:
                 _quizManager.StartQuiz(QuizType.Image);
                 break;
         }

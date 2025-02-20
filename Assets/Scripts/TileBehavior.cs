@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class TileBehavior : MonoBehaviour
 {
-    public enum TileType
-    {
-        Empty,
-        TextQuiz,
-        FlagsQuiz,
-    }
-
     [SerializeField]
     private TileType _tileType;
 

@@ -41,7 +41,7 @@ public class PlayerBehavior : MonoBehaviour
             yield return new WaitForSeconds(MoveDuration);
 
             ++CurrentTileIndex;
-            if (destination.Type == TileBehavior.TileType.Empty)
+            if (destination.Type == TileType.Empty)
             {
                 if (destination == destinations.Last())
                     ShowParticlesOnLand();

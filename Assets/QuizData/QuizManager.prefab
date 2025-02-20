@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3808732754850714536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 275217659632300332}
+  - component: {fileID: 4092370054131091587}
+  - component: {fileID: 5231543377986105749}
+  m_Layer: 0
+  m_Name: QuizManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &275217659632300332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808732754850714536}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4092370054131091587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808732754850714536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2914568d6539e3c4b849b3554fead831, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _quizzes:
+  - {fileID: 4900000, guid: 66588a69ef43e4ed288f156ecfd7e532, type: 3}
+  - {fileID: 4900000, guid: 077fc6047a0e0104e8a9dd1dc5ea94f0, type: 3}
+  - {fileID: 4900000, guid: 460fa43c68dc58048aca98aaf6c1e86b, type: 3}
+  - {fileID: 4900000, guid: 2d87f6c76b67e96478a2c017d711e1d9, type: 3}
+  - {fileID: 4900000, guid: 952f70ada48f2445494217015362263b, type: 3}
+  _flagPairs:
+  - Code: ca
+    Image: {fileID: 21300000, guid: aa7afeb4cdb604109a8aa4c8e19c5207, type: 3}
+  - Code: ie
+    Image: {fileID: 21300000, guid: f01b1383a489f473380152fa57a2626b, type: 3}
+  - Code: nz
+    Image: {fileID: 21300000, guid: c840c90675e444fed9551f13fec3d49f, type: 3}
+  - Code: us
+    Image: {fileID: 21300000, guid: f75ef7a79354a4bca9e8b6f856f82a8d, type: 3}
+--- !u!114 &5231543377986105749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3808732754850714536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d143132bc91c00a4daf756c1e1b937eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiSelector: {fileID: 0}
+  _quizRepo: {fileID: 4092370054131091587}
+  _textQuizCanvas: {fileID: 0}
+  _flagQuizCanvas: {fileID: 0}
+  _textQuizCanvasResult: {fileID: 0}
+  _flagQuizCanvasResult: {fileID: 0}
+  _successText: Well done!
+  _failureText: Good luck next time!
+  _quizDuration: 5

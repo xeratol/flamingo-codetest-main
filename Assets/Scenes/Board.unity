@@ -1090,87 +1090,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1356890970}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1429984372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1429984374}
-  - component: {fileID: 1429984373}
-  - component: {fileID: 1429984375}
-  m_Layer: 0
-  m_Name: QuizManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1429984373
+--- !u!114 &1429984375 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5231543377986105749, guid: 18388e7622d22e94aa26d8367567a98c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4652880916634397930}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429984372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2914568d6539e3c4b849b3554fead831, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _quizzes:
-  - {fileID: 4900000, guid: 66588a69ef43e4ed288f156ecfd7e532, type: 3}
-  - {fileID: 4900000, guid: 077fc6047a0e0104e8a9dd1dc5ea94f0, type: 3}
-  - {fileID: 4900000, guid: 460fa43c68dc58048aca98aaf6c1e86b, type: 3}
-  - {fileID: 4900000, guid: 2d87f6c76b67e96478a2c017d711e1d9, type: 3}
-  - {fileID: 4900000, guid: 952f70ada48f2445494217015362263b, type: 3}
-  _flagPairs:
-  - Code: ca
-    Image: {fileID: 21300000, guid: aa7afeb4cdb604109a8aa4c8e19c5207, type: 3}
-  - Code: ie
-    Image: {fileID: 21300000, guid: f01b1383a489f473380152fa57a2626b, type: 3}
-  - Code: nz
-    Image: {fileID: 21300000, guid: c840c90675e444fed9551f13fec3d49f, type: 3}
-  - Code: us
-    Image: {fileID: 21300000, guid: f75ef7a79354a4bca9e8b6f856f82a8d, type: 3}
---- !u!4 &1429984374
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429984372}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 681.1582, y: 692.4828, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1429984375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429984372}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d143132bc91c00a4daf756c1e1b937eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _uiSelector: {fileID: 4090097196815399939}
-  _quizRepo: {fileID: 1429984373}
-  _textQuizCanvas: {fileID: 1820712386}
-  _flagQuizCanvas: {fileID: 4090097196815399940}
-  _textQuizCanvasResult: {fileID: 614005869}
-  _flagQuizCanvasResult: {fileID: 1300814413}
-  _successText: Well done!
-  _failureText: Good luck next time!
-  _quizDuration: 5
 --- !u!114 &1552134236 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6829789285257411941, guid: 3e7cb15866b2044c4821d261c3bfeeb2,
@@ -1588,6 +1519,99 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18f1977b9a2311a468107bbb0024d6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &4652880916634397930
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 275217659632300332, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808732754850714536, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: m_Name
+      value: QuizManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5231543377986105749, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: _uiSelector
+      value: 
+      objectReference: {fileID: 4090097196815399939}
+    - target: {fileID: 5231543377986105749, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: _flagQuizCanvas
+      value: 
+      objectReference: {fileID: 4090097196815399940}
+    - target: {fileID: 5231543377986105749, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: _textQuizCanvas
+      value: 
+      objectReference: {fileID: 1820712386}
+    - target: {fileID: 5231543377986105749, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: _flagQuizCanvasResult
+      value: 
+      objectReference: {fileID: 1300814413}
+    - target: {fileID: 5231543377986105749, guid: 18388e7622d22e94aa26d8367567a98c,
+        type: 3}
+      propertyPath: _textQuizCanvasResult
+      value: 
+      objectReference: {fileID: 614005869}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18388e7622d22e94aa26d8367567a98c, type: 3}
 --- !u!1001 &5152446221303807193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1672,7 +1696,7 @@ SceneRoots:
   - {fileID: 2028429066}
   - {fileID: 1263781392}
   - {fileID: 302646068}
-  - {fileID: 1429984374}
+  - {fileID: 4652880916634397930}
   - {fileID: 4090097196815399933}
   - {fileID: 2018558639}
   - {fileID: 494183226}
