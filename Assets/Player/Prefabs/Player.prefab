@@ -157,6 +157,8 @@ MonoBehaviour:
   _fireworksOnLand: {fileID: 8648052651491655351, guid: f8ca9ef104c81954eb75e3056f819b62,
     type: 3}
   _animator: {fileID: 7717598569666331117}
+  _scorePopup: {fileID: 3301350757785011732, guid: 9f1a3693a1727ba4e83d481464ba7708,
+    type: 3}
 --- !u!95 &7717598569666331117
 Animator:
   serializedVersion: 5

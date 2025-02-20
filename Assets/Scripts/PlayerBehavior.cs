@@ -26,6 +26,9 @@ public class PlayerBehavior : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
+    [SerializeField]
+    private ScorePopupBehavior _scorePopup;
+
     public void MoveTo(IEnumerable<TileBehavior> destinations)
     {
         StartCoroutine(Move(destinations));
@@ -47,6 +50,7 @@ public class PlayerBehavior : MonoBehaviour
                     ShowParticlesOnLand();
                 else
                     ShowParticlesOnPass();
+                ShowScorePopup();
             }
         }
 
@@ -80,5 +84,11 @@ public class PlayerBehavior : MonoBehaviour
             _fireworksOnLandInstance.position = transform.position;
             _fireworksOnLandInstance.GetComponent<ParticleSystem>().Play();
         }
+    }
+
+    private void ShowScorePopup()
+    {
+        var popup = Instantiate(_scorePopup, transform.position, Quaternion.identity);
+        popup.Text = "100";
     }
 }
