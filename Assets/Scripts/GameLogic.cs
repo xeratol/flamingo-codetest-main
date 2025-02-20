@@ -24,6 +24,9 @@ public class GameLogic : MonoBehaviour
     private int _currentPlayer = 0;
     private bool _isAnyPlayerMoving = false;
 
+    [SerializeField]
+    private CameraFollow _camera;
+
     void Awake()
     {
         if (_players == null || _players.Count() == 0)
@@ -42,10 +45,18 @@ public class GameLogic : MonoBehaviour
         if (_quizManager == null)
             throw new ArgumentException($"Quiz Manager is not set");
 
+        if (_camera == null)
+            throw new ArgumentException($"Camera is not set");
+
         foreach (var player in _players)
             player.OnMoveCompleteEvent += OnMoveCompleteEventHandler;
 
         _numberGenerator.OnGenerateEvent += OnNumberGenerateEventHandler;
+    }
+
+    private void Start()
+    {
+        _camera.SetTarget(_players[_currentPlayer].transform);
     }
 
     public void MovePlayer()
@@ -66,6 +77,7 @@ public class GameLogic : MonoBehaviour
                 _quizManager.StartQuiz(QuizType.Image);
                 break;
         }
+        _camera.SetTarget(_players[_currentPlayer].transform);
     }
 
     private void OnNumberGenerateEventHandler(int numSteps)
