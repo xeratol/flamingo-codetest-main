@@ -6,15 +6,60 @@ using UnityEngine;
 
 public class BoardBehavior : MonoBehaviour
 {
-    private List<TileBehavior> _tiles;
+    [SerializeField]
+    private Transform _tileStart;
+
+    [SerializeField]
+    private Transform _tileEmpty;
+
+    [SerializeField]
+    private Transform _tileFlagQuiz;
+
+    [SerializeField]
+    private Transform _tileTextQuiz;
+
+    [SerializeField]
+    private TextAsset _levelDesignFile;
+
+    private readonly List<TileBehavior> _tiles = new();
+
+    private void Awake()
+    {
+        if (_tileStart == null)
+            throw new ArgumentNullException($"Tile Start is not set");
+
+        if (_tileEmpty == null)
+            throw new ArgumentNullException($"Tile Empty is not set");
+
+        if (_tileFlagQuiz == null)
+            throw new ArgumentNullException($"Tile Flag Quiz is not set");
+
+        if (_tileTextQuiz == null)
+            throw new ArgumentNullException($"Tile Text Quiz is not set");
+
+        if (_levelDesignFile == null)
+            throw new ArgumentNullException($"Level Design File is not set");
+
+    }
 
     private void Start()
     {
-        // Assuming that board behavior does not have a tile behavior
-        // And that children with TileBehavior are all on the 1st level
-        _tiles = GetComponentsInChildren<TileBehavior>().ToList();
-        if (_tiles.Count == 0)
-            throw new InvalidOperationException($"No tiles found");
+        var boardData = JsonUtility.FromJson<BoardData>(_levelDesignFile.text);
+
+        foreach (var tile in boardData.Tiles)
+        {
+            var position = new Vector3(tile.PosX, tile.PosY, tile.PosZ);
+            var newTile = tile.Type switch
+            {
+                TileType.Empty => Instantiate(_tiles.Count == 0 ? _tileStart : _tileEmpty, position, Quaternion.identity),
+                TileType.TextQuiz => Instantiate(_tileTextQuiz, position, Quaternion.identity),
+                TileType.FlagsQuiz => Instantiate(_tileFlagQuiz, position, Quaternion.identity),
+                _ => throw new NotImplementedException(),
+            };
+            newTile.SetParent(transform);
+
+            _tiles.Add(newTile.GetComponent<TileBehavior>());
+        }
     }
 
     public IEnumerable<TileBehavior> GetTiles(int fromIndex, int steps)
